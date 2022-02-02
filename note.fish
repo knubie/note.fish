@@ -6,7 +6,7 @@ function note
     case new
       do_new
     case list ""
-      echo "nothing"
+      do_list
     case help
       print_help
     case "*"
@@ -14,6 +14,10 @@ function note
       echo $usage
       return 1
   end
+end
+
+function do_list
+  ls $notedir
 end
 
 function do_new
