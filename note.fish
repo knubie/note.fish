@@ -4,7 +4,7 @@ set notedir ~/.local/share/note/
 function note
   switch $argv[1]
     case new
-      do_new
+      do_new $argv
     case list ""
       do_list
     case help
@@ -24,7 +24,12 @@ end
 
 function do_new
   set date_prefix (date "+%Y-%m-%d-%H-%M-%S")
-  $EDITOR $notedir/$date_prefix.txt
+  if test (count $argv) -lt 2
+    set title ""
+  else
+    set title $argv[2]
+  end
+  $EDITOR $notedir/$date_prefix-$title.txt
 end
 
 function do_help
