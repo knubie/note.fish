@@ -8,16 +8,18 @@ function note
     case list ""
       do_list
     case help
-      print_help
+      do_help
     case "*"
-      echo "bad command"
-      echo $usage
-      return 1
+      do_bad_command
   end
 end
 
 function do_list
-  ls $notedir
+  for n in (ls $notedir)
+    echo -n (string sub -e -4 $n)
+    echo -n \t
+    echo (head -n 1 $notedir/$n)
+  end
 end
 
 function do_new
@@ -25,9 +27,14 @@ function do_new
   $EDITOR $notedir/$date_prefix.txt
 end
 
-function print_help
+function do_help
   echo "note - note taking and note giving"
   echo
   echo $usage
 end
 
+function do_bad_command
+  echo "bad command"
+  echo $usage
+  return 1
+end
