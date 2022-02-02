@@ -16,7 +16,7 @@ end
 
 function do_list
   for n in (ls $notedir)
-    echo -n (string sub -e -4 $n)
+    echo -n (string sub -e 19 $n)
     echo -n \t
     echo (head -n 1 $notedir/$n)
   end
