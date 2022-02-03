@@ -1,5 +1,5 @@
-set usage "note [new|list|help]"
 set notedir ~/.local/share/note/
+set dateformat "%Y%m%dT%H%M%SZ%Z"
 
 function note
   switch $argv[1]
@@ -16,14 +16,16 @@ end
 
 function do_list
   for n in (ls $notedir)
-    echo -n (string sub -e 19 $n)
+    echo -n (date -jf $dateformat (string split - $n)[1])
     echo -n \t
     echo (head -n 1 $notedir/$n)
   end
 end
 
+
+
 function do_new
-  set date_prefix (date "+%Y-%m-%d-%H-%M-%S")
+  set date_prefix (date "+$dateformat")
   if test (count $argv) -lt 2
     set title ""
   else
@@ -35,11 +37,15 @@ end
 function do_help
   echo "note - note taking and note giving"
   echo
-  echo $usage
+  usage
 end
 
 function do_bad_command
   echo "bad command"
-  echo $usage
+  usage
   return 1
+end
+
+function usage
+  echo "note [new|list|help]"
 end
