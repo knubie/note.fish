@@ -96,5 +96,5 @@ function do_bad_command
 end
 
 function usage
-  echo "note [new|list|help]"
+  echo "note [new|list|edit|info|help|version]"
 end
