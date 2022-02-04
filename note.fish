@@ -19,7 +19,10 @@ end
 
 function do_list
   for n in (ls $notedir)
-    echo -n (date -jf $dateformat (string split - $n)[1])
+    set note_info (string split - $n)
+    echo -n (date -jf $dateformat $note_info[1])
+    echo -n \t
+    echo -n $note_info[2]
     echo -n \t
     echo (head -n 1 $notedir/$n)
   end
