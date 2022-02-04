@@ -1,5 +1,6 @@
 set notedir ~/.local/share/note/
 set dateformat "%Y%m%dT%H%M%SZ%Z"
+set note_version "0.0.0"
 
 function note
   switch $argv[1]
@@ -9,6 +10,8 @@ function note
       do_list
     case help
       do_help
+    case version
+      do_version
     case "*"
       do_bad_command
   end
@@ -38,9 +41,14 @@ function do_new
 end
 
 function do_help
-  echo "note - note taking and note giving"
+  echo "note.fish - note taking and note giving"
+  echo "version" $note_version
   echo
   usage
+end
+
+function do_version
+  echo "note.fish" $note_version
 end
 
 function do_bad_command
