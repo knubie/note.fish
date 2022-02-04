@@ -8,6 +8,8 @@ function note
       do_new $argv
     case list ""
       do_list
+    case info
+      do_info $argv
     case help
       do_help
     case version
@@ -26,6 +28,23 @@ function do_list
     echo -n \t
     echo (head -n 1 $notedir/$n)
   end
+end
+
+function do_info
+  set hesj $argv[2]
+
+  for n in (ls $notedir)
+    set note_info (string split - $n)
+    if test $hesj = $note_info[2]
+      echo "   id:" $note_info[2]
+      echo " file:" $notedir/$n
+      echo " time:" (date -jf $dateformat $note_info[1])
+      echo " head:" (head -n 1 $notedir/$n)
+      return
+    end
+  end
+  echo "Note with id" $hesj "not found"
+  return 1
 end
 
 function hesj
