@@ -47,7 +47,7 @@ function do_info
   return 1
 end
 
-function hesj
+function random_id
   string sub -s 3 (math --base=hex (random (math 0x10000000) (math 0xffffffff)))
 end
 
@@ -59,7 +59,7 @@ function do_new
   else
     set title $argv[2]
   end
-  $EDITOR $notedir/$date_prefix-(hesj)-$title.txt
+  $EDITOR $notedir/$date_prefix-(random_id)-$title.txt
 end
 
 function do_help
