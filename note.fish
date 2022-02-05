@@ -13,7 +13,7 @@ function note
     case info
       do_info $argv
     case help
-      do_help
+      note-help
     case version
       note-version
     case "*"
@@ -78,7 +78,7 @@ function note-new
   $EDITOR $notedir/$date_prefix-(random_id)-$title.txt
 end
 
-function do_help
+function note-help
   echo "note.fish - note taking and note giving"
   echo "version" $note_version
   echo
