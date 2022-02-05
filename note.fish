@@ -15,7 +15,7 @@ function note
     case help
       do_help
     case version
-      do_version
+      note-version
     case "*"
       do_bad_command
   end
@@ -85,7 +85,7 @@ function do_help
   usage
 end
 
-function do_version
+function note-version
   echo "note.fish" $note_version
 end
 
