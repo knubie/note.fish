@@ -86,7 +86,7 @@ function do_help
 end
 
 function note-version
-  echo "note.fish" $note_version
+  echo "note.fish version" $note_version
 end
 
 function do_bad_command
