@@ -5,7 +5,7 @@ set note_version "0.0.0"
 function note
   switch $argv[1]
     case new
-      do_new $argv
+      note-new $argv[2..-1]
     case list ""
       do_list
     case edit
@@ -68,12 +68,12 @@ function random_id
 end
 
 
-function do_new
+function note-new
   set date_prefix (date "+$dateformat")
-  if test (count $argv) -lt 2
+  if test (count $argv) -lt 1
     set title ""
   else
-    set title $argv[2]
+    set title $argv[1]
   end
   $EDITOR $notedir/$date_prefix-(random_id)-$title.txt
 end
