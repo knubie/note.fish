@@ -21,6 +21,16 @@ function note
   end
 end
 
+function note-new
+  set date_prefix (date "+$dateformat")
+  if test (count $argv) -lt 1
+    set title ""
+  else
+    set title $argv[1]
+  end
+  $EDITOR $notedir/$date_prefix-(random_id)-$title.txt
+end
+
 function note-list
   for n in (ls $notedir)
     set note_info (string split - $n)
@@ -68,15 +78,6 @@ function random_id
 end
 
 
-function note-new
-  set date_prefix (date "+$dateformat")
-  if test (count $argv) -lt 1
-    set title ""
-  else
-    set title $argv[1]
-  end
-  $EDITOR $notedir/$date_prefix-(random_id)-$title.txt
-end
 
 function note-help
   echo "note.fish - note taking and note giving"
