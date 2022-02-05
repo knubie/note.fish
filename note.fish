@@ -11,7 +11,7 @@ function note
     case edit
       note-edit $argv[2..-1]
     case info
-      note-info $argv
+      note-info $argv[2..-1]
     case help
       note-help
     case version
@@ -47,7 +47,7 @@ function note-edit
 end
 
 function note-info
-  set hesj $argv[2]
+  set hesj $argv[1]
 
   for n in (ls $notedir)
     set note_info (string split - $n)
