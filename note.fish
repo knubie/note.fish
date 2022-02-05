@@ -7,7 +7,7 @@ function note
     case new
       note-new $argv[2..-1]
     case list ""
-      do_list
+      note-list
     case edit
       do_edit $argv
     case info
@@ -21,7 +21,7 @@ function note
   end
 end
 
-function do_list
+function note-list
   for n in (ls $notedir)
     set note_info (string split - $n)
     echo -n (date -jf $dateformat $note_info[1])
