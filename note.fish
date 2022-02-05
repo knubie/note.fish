@@ -9,7 +9,7 @@ function note
     case list ""
       note-list
     case edit
-      do_edit $argv
+      note-edit $argv
     case info
       do_info $argv
     case help
@@ -32,7 +32,7 @@ function note-list
   end
 end
 
-function do_edit
+function note-edit
   set hesj $argv[2]
 
   for n in (ls $notedir)
