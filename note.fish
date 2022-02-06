@@ -72,19 +72,22 @@ function note-edit
 end
 
 function note-info
-  set hesj $argv[1]
+  set target $argv[1]
+  if is_shortlist_number $target
+    set target $__note_shortlist[$target]
+  end
 
   for n in (ls $notedir)
     set note_info (string split - $n)
-    if test $hesj = $note_info[2]
+    if test $target = $note_info[2]
       echo "   id:" $note_info[2]
       echo " file:" $notedir/$n
       echo " time:" (date -jf $dateformat_file $note_info[1])
       echo " head:" (head -n 1 $notedir/$n)
-      return
+      return 0
     end
   end
-  echo "Note with id" $hesj "not found"
+  echo "Note with id" $target "not found"
   return 1
 end
 
