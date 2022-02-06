@@ -73,12 +73,6 @@ function note-info
   return 1
 end
 
-function random_id
-  string sub -s 3 (math --base=hex (random (math 0x10000000) (math 0xffffffff)))
-end
-
-
-
 function note-help
   echo "note.fish - note taking and note giving"
   echo "version" $note_version
@@ -98,4 +92,8 @@ end
 
 function usage
   echo "note [new|list|edit|info|help|version]"
+end
+
+function random_id
+  string sub -s 3 (math --base=hex (random (math 0x10000000) (math 0xffffffff)))
 end
