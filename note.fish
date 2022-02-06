@@ -14,7 +14,7 @@ function note
       note-info $argv[2..-1]
     case help
       note-help
-    case version
+    case version "--version"
       note-version
     case "*"
       do_bad_command
