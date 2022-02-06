@@ -49,7 +49,7 @@ function note-list
     echo -n $col_sep
     echo (head -n 1 $notedir/$n)
 
-    set -ga __note_shortlist $note_hash
+    set -agx __note_shortlist $note_hash
     set _index (math $_index + 1)
   end
 end
