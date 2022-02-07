@@ -36,7 +36,7 @@ function note-list
   set col_sep "  "
   set -e __note_shortlist
   set _index 1
-  for n in (ls $notedir)
+  for n in (command ls $notedir)
     set note_info (string split - $n)
 
     set note_hash $note_info[2]
@@ -60,7 +60,7 @@ function note-edit
     set target $__note_shortlist[$target]
   end
 
-  for n in (ls $notedir)
+  for n in (command ls $notedir)
     set note_info (string split - $n)
     if test $target = $note_info[2]
       $EDITOR $notedir/$n
@@ -77,7 +77,7 @@ function note-info
     set target $__note_shortlist[$target]
   end
 
-  for n in (ls $notedir)
+  for n in (command ls $notedir)
     set note_info (string split - $n)
     if test $target = $note_info[2]
       echo "   id:" $note_info[2]
